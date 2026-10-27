@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Школа AnorLondo{% endblock %}</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome (Иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Шрифт Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Главное меню -->
+    <header class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="{% url 'home' %}" class="text-2xl font-bold tracking-wider hover:text-blue-300 transition flex items-center gap-3">
+                <i class="fa-solid fa-graduation-cap text-3xl"></i>
+                AnorLondo School
+            </a>
+
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="{% url 'home' %}" class="hover:text-blue-300 transition border-b-2 border-transparent hover:border-blue-300 pb-1">Главная</a>
+                <a href="{% url 'news' %}" class="hover:text-blue-300 transition border-b-2 border-transparent hover:border-blue-300 pb-1">Новости</a>
+                <a href="{% url 'teachers' %}" class="hover:text-blue-300 transition border-b-2 border-transparent hover:border-blue-300 pb-1">Учителя</a>
+                <a href="{% url 'schedule' %}" class="hover:text-blue-300 transition border-b-2 border-transparent hover:border-blue-300 pb-1">Расписание</a>
+                <a href="{% url 'books' %}" class="hover:text-blue-300 transition border-b-2 border-transparent hover:border-blue-300 pb-1">Библиотека</a>
+            </nav>
+
+            <!-- Мобильная кнопка меню (пока без JS, просто для видимости) -->
+            <button class="md:hidden text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Подвал (Footer) -->
+    <footer class="bg-gray-900 text-gray-300 pt-12 pb-8 border-t-4 border-blue-600 mt-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Колонка 1: О школе -->
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">О нашей школе</h3>
+                <p class="text-sm leading-relaxed mb-4">
+                    Школа AnorLondo — это пространство, где каждый ученик может раскрыть свой потенциал. Мы сочетаем классические традиции образования с современными технологиями.
+                </p>
+                <div class="flex space-x-4 text-xl">
+                    <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-vk"></i></a>
+                    <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Колонка 2: Быстрые ссылки -->
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Полезные ссылки</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="{% url 'schedule' %}" class="hover:text-blue-400 transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i>Расписание уроков</a></li>
+                    <li><a href="{% url 'teachers' %}" class="hover:text-blue-400 transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i>Педагогический состав</a></li>
+                    <li><a href="{% url 'books' %}" class="hover:text-blue-400 transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i>Электронная библиотека</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 3: Контакты -->
+            <div>
+                <h3 class="text-white text-xl font-bold mb-4">Контакты</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-blue-400"></i>
+                        <span>г. Н, ул. Н, д. 1, стр. 1</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-blue-400"></i>
+                        <span>+7 (999) 123-45-67</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-blue-400"></i>
+                        <span>info@anorlondo-school.ru</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 mt-12 pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+            <p>&copy; {% now "Y" %} Школа AnorLondo. Все права защищены. Вся информация на сайте выдумана и написана исключительно для школьного проекта, все люди и новости вымышлены!</p>
+        </div>
+    </footer>
+</body>
+</html>

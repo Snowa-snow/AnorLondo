@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Библиотека - Школа AnorLondo{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-12">
+    
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <h1 class="text-3xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4">Электронная библиотека</h1>
+
+        <form method="get" class="w-full md:w-auto relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <input type="text" name="q" value="{{ query|default:'' }}"
+                   placeholder="Поиск по названию или автору..."
+                   class="block w-full md:w-80 pl-10 pr-10 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800 transition">
+
+            {% if query %}
+                <a href="{% url 'books' %}" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-red-500 transition" title="Очистить поиск">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+            {% endif %}
+        </form>
+    </div>
+
+    {% if query %}
+        <div class="mb-6 text-gray-600">
+            Результаты поиска по запросу: <span class="font-bold text-gray-900">"{{ query }}"</span>
+            (найдено: {{ books|length }})
+        </div>
+    {% endif %}
+
+    <!-- Сетка книг -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for book in books %}
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-start gap-4 hover:shadow-md transition duration-300">
+            <!-- Иконка книги -->
+            <div class="bg-blue-50 text-blue-600 p-4 rounded-lg flex-shrink-0">
+                <i class="fa-solid fa-book text-3xl"></i>
+            </div>
+            <!-- Текст -->
+            <div>
+                <h2 class="text-lg font-bold text-gray-900 leading-tight mb-1">{{ book.title }}</h2>
+                <p class="text-sm font-semibold text-blue-600 mb-2">{{ book.author }}</p>
+                <p class="text-gray-600 text-sm line-clamp-3">{{ book.description }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full bg-blue-50 border border-blue-100 text-blue-800 p-10 rounded-xl text-center">
+            <i class="fa-solid fa-magnifying-glass text-4xl mb-3 text-blue-400"></i>
+            {% if query %}
+                <p class="text-lg">По запросу <b>"{{ query }}"</b> ничего не найдено. Попробуйте изменить запрос.</p>
+            {% else %}
+                <p class="text-lg">В библиотеке пока нет книг.</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

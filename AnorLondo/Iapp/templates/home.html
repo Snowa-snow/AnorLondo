@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Главная - Школа AnorLondo{% endblock %}
+
+{% block content %}
+<!-- 1. Герой-секция (Баннер) -->
+<section class="relative bg-blue-900 text-white">
+    <!-- Фоновая картинка (замените ссылку на любую свою) -->
+    <div class="absolute inset-0">
+        <img src="{% static 'school.jpg' %}" alt="Школа" class="w-full h-full object-cover opacity-30">
+    </div>
+    <div class="relative container mx-auto px-6 py-24 md:py-32 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-lg">Добро пожаловать в Школу AnorLondo</h1>
+        <p class="text-lg md:text-2xl mb-10 max-w-3xl mx-auto font-light drop-shadow-md">
+            Место, где знания встречаются с будущим. Мы воспитываем лидеров, мыслителей и творцов.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="#about" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition shadow-lg">Узнать больше</a>
+            <a href="{% url 'schedule' %}" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-full transition shadow-lg">Расписание</a>
+        </div>
+    </div>
+</section>
+
+<!-- 2. О школе -->
+<section id="about" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">Наша миссия</h2>
+                <p class="text-gray-600 leading-relaxed mb-4 text-lg">
+                    Мы верим, что образование — это не просто заучивание фактов. Это развитие критического мышления, любознательности и навыков 21 века.
+                </p>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    В нашей школе работают лучшие педагоги, которые используют индивидуальный подход к каждому ребенку. Современные лаборатории, уютная библиотека и дружелюбная атмосфера — всё для того, чтобы учиться было в радость.
+                </p>
+            </div>
+            <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                <div class="bg-blue-50 p-6 rounded-xl text-center">
+                    <div class="text-4xl font-extrabold text-blue-700 mb-2">1200+</div>
+                    <div class="text-sm text-gray-600 font-semibold uppercase">Учеников</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl text-center">
+                    <div class="text-4xl font-extrabold text-blue-700 mb-2">85</div>
+                    <div class="text-sm text-gray-600 font-semibold uppercase">Учителей</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl text-center">
+                    <div class="text-4xl font-extrabold text-blue-700 mb-2">30+</div>
+                    <div class="text-sm text-gray-600 font-semibold uppercase">Кружков</div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl text-center">
+                    <div class="text-4xl font-extrabold text-blue-700 mb-2">98%</div>
+                    <div class="text-sm text-gray-600 font-semibold uppercase">Поступление в ВУЗы</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Важная информация (Каникулы, Экзамены) -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Важные даты</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Каникулы -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="bg-green-100 p-3 rounded-full text-green-600 text-2xl"><i class="fa-solid fa-sun"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800">Каникулы 2026/2027</h3>
+                </div>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex justify-between border-b pb-2"><span>Осенние:</span> <span class="font-semibold">28 окт — 5 ноя</span></li>
+                    <li class="flex justify-between border-b pb-2"><span>Зимние:</span> <span class="font-semibold">29 дек — 10 янв</span></li>
+                    <li class="flex justify-between border-b pb-2"><span>Весенние:</span> <span class="font-semibold">23 мар — 31 мар</span></li>
+                    <li class="flex justify-between pt-1"><span>Летние:</span> <span class="font-semibold">1 июн — 31 авг</span></li>
+                </ul>
+            </div>
+            <!-- Экзамены -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="bg-red-100 p-3 rounded-full text-red-600 text-2xl"><i class="fa-solid fa-book-open"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800">Экзамены (ОГЭ/ЕГЭ)</h3>
+                </div>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex justify-between border-b pb-2"><span>Досрочный период:</span> <span class="font-semibold">20 мар — 15 апр</span></li>
+                    <li class="flex justify-between border-b pb-2"><span>Основной период:</span> <span class="font-semibold">25 мая — 20 июн</span></li>
+                    <li class="flex justify-between border-b pb-2"><span>Пересдача:</span> <span class="font-semibold">5 июл — 15 июл</span></li>
+                    <li class="flex justify-between pt-1"><span>Доп. период:</span> <span class="font-semibold">5 сен — 15 сен</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Новости -->
+{% if latest_news %}
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="flex justify-between items-end mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">Последние новости</h2>
+            <a href="{% url 'news' %}" class="text-blue-600 font-semibold hover:underline hidden md:block">Все новости &rarr;</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for item in latest_news %}
+            <div class="bg-white rounded-xl shadow border border-gray-100 flex flex-col h-full hover:shadow-lg transition">
+                <div class="p-6 flex-grow">
+                    <p class="text-xs text-blue-600 font-bold mb-2">{{ item.created_at|date:"d M Y" }}</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3 line-clamp-2">{{ item.title }}</h3>
+                    <p class="text-gray-600 text-sm line-clamp-3">{{ item.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mt-8 text-center md:hidden">
+            <a href="{% url 'news' %}" class="text-blue-600 font-semibold hover:underline">Все новости &rarr;</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- 5. Геолокация / Карта -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Как нас найти</h2>
+        <div class="bg-white p-2 rounded-2xl shadow-lg overflow-hidden">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.3721840769366!2d37.61749731617845!3d55.75582698055251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a50b315e573%3A0x440223753e56d05b!2z0JzQvtGB0LrQvtCy0YHQutC40Lkg0JDRgNCx0LDRgg!5e0!3m2!1sru!2sru!4v1625000000000!5m2!1sru!2sru"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl"></iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}
